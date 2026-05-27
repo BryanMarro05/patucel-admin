@@ -70,5 +70,5 @@ import StatsCard from '../../components/dashboard/StatsCard.vue'
 
 import SalesChart from '../../components/dashboard/SalesChart.vue'
 
-import TopProducts from '../../components/dashboard/TopProducts.vue'
+import TopProducts from '../../components/dashboard/TopProductos.vue'
 </script>
