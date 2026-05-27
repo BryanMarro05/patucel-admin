@@ -1,48 +1,98 @@
 <template>
-  <div class="chart-card">
-    <div class="chart-header">
+  <div
+    class="bg-card border border-border rounded-3xl p-6"
+  >
+    <div class="flex items-center justify-between mb-8">
       <div>
-        <h2 class="chart-title">
-          Ventas Mensuales
+        <h2 class="text-2xl font-bold">
+          Ventas
         </h2>
 
-        <p class="chart-subtitle">
-          Rendimiento de ventas del último año
+        <p class="text-zinc-400 mt-1">
+          Rendimiento mensual
         </p>
       </div>
+
+      <button
+        class="bg-primary text-black px-4 py-2 rounded-xl font-semibold"
+      >
+        Exportar
+      </button>
     </div>
 
-    <!-- TU CHART AQUÍ -->
-    <div class="chart-body">
-      <slot />
-    </div>
+    <apexchart
+      type="area"
+      height="350"
+      :options="chartOptions"
+      :series="series"
+    />
   </div>
 </template>
 
-<style scoped>
-.chart-card {
-  @apply bg-white dark:bg-zinc-900
-  border border-zinc-200 dark:border-zinc-800
-  rounded-3xl
-  p-5 md:p-6
-  shadow-sm
-  h-full;
-}
+<script setup>
+const series = [
+  {
+    name: 'Ventas',
+    data: [1200, 2100, 1800, 2800, 3500, 4200, 3900],
+  },
+]
 
-.chart-header {
-  @apply flex items-center justify-between mb-6;
-}
+const chartOptions = {
+  chart: {
+    toolbar: {
+      show: false,
+    },
 
-.chart-title {
-  @apply text-lg md:text-xl font-bold
-  text-zinc-900 dark:text-white;
-}
+    background: 'transparent',
+  },
 
-.chart-subtitle {
-  @apply text-sm text-zinc-500 dark:text-zinc-400 mt-1;
-}
+  theme: {
+    mode: 'dark',
+  },
 
-.chart-body {
-  @apply w-full overflow-hidden;
+  dataLabels: {
+    enabled: false,
+  },
+
+  stroke: {
+    curve: 'smooth',
+    width: 4,
+  },
+
+  colors: ['#facc15'],
+
+  grid: {
+    borderColor: '#27272a',
+  },
+
+  xaxis: {
+    categories: [
+      'Lun',
+      'Mar',
+      'Mié',
+      'Jue',
+      'Vie',
+      'Sáb',
+      'Dom',
+    ],
+
+    labels: {
+      style: {
+        colors: '#71717a',
+      },
+    },
+  },
+
+  yaxis: {
+    labels: {
+      style: {
+        colors: '#71717a',
+      },
+    },
+  },
+
+  tooltip: {
+    theme: 'dark',
+  },
 }
-</style>
+</script>
